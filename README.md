@@ -1,24 +1,26 @@
-# LS-Financial-Literacy[courses.html](https://github.com/user-attachments/files/25618461/courses.html)
+[index.html](https://github.com/user-attachments/files/25618472/index.html)
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LS FinLit - Course Platform</title>
+    <title>LS FinLit - Empowering Kids to Be Money Smart</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background: #fafafa;
-            color: #1a1a1a;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
             line-height: 1.6;
+            color: #1a1a1a;
+            background: #fafafa;
         }
 
+        /* Navigation */
         .navbar {
             background: rgba(45, 80, 22, 0.95);
             backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 215, 0, 0.1);
             padding: 1.2rem 0;
             position: sticky;
@@ -53,14 +55,27 @@
         }
 
         .nav-menu a {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
             transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ffd700;
+            transition: width 0.3s ease;
         }
 
         .nav-menu a:hover { color: #ffd700; }
+        .nav-menu a:hover::after { width: 100%; }
 
         .contact-btn {
             background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
@@ -78,475 +93,362 @@
             box-shadow: 0 8px 25px rgba(255,215,0,0.4);
         }
 
-        .donate-btn {
-            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-            color: #2d5016 !important;
-            padding: 0.7rem 1.8rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
-            transition: all 0.3s ease;
-        }
+        .contact-btn::after { display: none !important; }
 
-        .donate-btn:hover { transform: translateY(-2px); }
-
-        .container { max-width: 1200px; margin: 3rem auto; padding: 0 2rem; }
-
-        .dashboard-header {
-            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
-            padding: 3rem;
-            border-radius: 20px;
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #2d5016 100%);
             color: white;
-            margin-bottom: 3rem;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .dashboard-header h1 {
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200"><path d="M0,100 C150,200 350,0 500,100 C650,200 850,0 1000,100 L1000,200 L0,200 Z" fill="rgba(255,215,0,0.1)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.5rem;
             font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            animation: fadeInUp 1s ease;
         }
 
-        .dashboard-header p { font-size: 1.2rem; opacity: 0.95; margin-bottom: 1.5rem; }
-
-        .progress-container {
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-top: 1.5rem;
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s both;
         }
 
-        .progress-text { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.9rem; }
+        .cta-button {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #2d5016;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+            animation: fadeInUp 1s ease 0.4s both;
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
 
-        .progress-bar { background: rgba(255,255,255,0.3); height: 8px; border-radius: 4px; overflow: hidden; }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.4);
+        }
 
-        .progress-fill {
-            background: linear-gradient(90deg, #ffd700, #ffed4e);
-            height: 100%;
-            transition: width 0.5s ease;
+        /* Mission & Vision */
+        .mission-vision {
+            padding: 6rem 0;
+            background: white;
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #2d5016;
-            margin-bottom: 2rem;
-        }
-
-        .module-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(45,80,22,0.08);
-            border: 1px solid rgba(45,80,22,0.05);
-            margin-bottom: 2rem;
-        }
-
-        .module-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-        .module-icon { font-size: 3rem; }
-
-        .module-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: #2d5016;
-        }
-
-        .lesson-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            margin-bottom: 1rem;
-        }
-
-        .lesson-item:hover { transform: translateX(5px); background: #e8e9ea; }
-
-        .lesson-item.completed {
-            background: rgba(255,215,0,0.1);
-            border: 2px solid #ffd700;
-        }
-
-        .lesson-item.quiz-item {
-            background: linear-gradient(135deg, rgba(45,80,22,0.05), rgba(45,80,22,0.1));
-            border: 2px solid rgba(45,80,22,0.2);
-        }
-
-        .lesson-item.quiz-item:hover { background: rgba(45,80,22,0.12); }
-
-        .lesson-item.quiz-passed {
-            background: rgba(40,167,69,0.08);
-            border: 2px solid #28a745;
-        }
-
-        .lesson-item.locked {
-            background: #f0f0f0;
-            border: 2px solid #ddd;
-            cursor: not-allowed;
-            opacity: 0.55;
-        }
-
-        .lesson-item.locked:hover {
-            transform: none;
-            background: #f0f0f0;
-        }
-
-        .module-card.locked-module .module-title {
-            color: #999;
-        }
-
-        .locked-banner {
-            background: #f8f9fa;
-            border: 2px dashed #dee2e6;
-            border-radius: 10px;
-            padding: 1rem 1.5rem;
-            margin-bottom: 0.5rem;
-            color: #6c757d;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 500;
-        }
-
-        .lesson-left { display: flex; align-items: center; gap: 1rem; }
-        .lesson-text { font-weight: 500; color: #1a1a1a; }
-
-        .lesson-view, .quiz-view { display: none; }
-        .lesson-view.active, .quiz-view.active { display: block; }
-        .dashboard-view.hidden { display: none; }
-
-        .back-btn {
-            background: transparent;
-            border: 2px solid #2d5016;
-            color: #2d5016;
-            padding: 0.7rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-        }
-
-        .back-btn:hover { background: #2d5016; color: white; }
-
-        .lesson-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(45,80,22,0.08);
-            margin-bottom: 2rem;
-        }
-
-        .lesson-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
-            color: #2d5016;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .lesson-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            color: #2d5016;
-            margin-bottom: 2rem;
-            font-weight: 700;
-        }
-
-        .video-placeholder {
-            background: #f0f0f0;
-            border-radius: 12px;
-            padding: 3rem;
             text-align: center;
-            margin-bottom: 2rem;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #ccc;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #2d5016;
+            margin-bottom: 3.5rem;
+            letter-spacing: -1px;
+            position: relative;
         }
 
-        .lesson-content { line-height: 1.8; font-size: 1.05rem; color: #333; }
-        .lesson-content h3 { color: #2d5016; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.8rem; }
-        .lesson-content p { margin-bottom: 1rem; }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+            border-radius: 2px;
+        }
 
-        .video-summary {
-            background: linear-gradient(135deg, rgba(45,80,22,0.04), rgba(45,80,22,0.08));
-            border-left: 4px solid #ffd700;
-            border-radius: 0 12px 12px 0;
-            padding: 1.25rem 1.5rem;
-            margin-bottom: 2rem;
-            font-size: 1rem;
-            color: #2d3748;
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .mission-card, .vision-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(45, 80, 22, 0.08);
+            border: 1px solid rgba(45, 80, 22, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-card::before, .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+        }
+
+        .mission-card:hover, .vision-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 80px rgba(45, 80, 22, 0.12);
+        }
+
+        .mission-card h3, .vision-card h3 {
+            color: #2d5016;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .mission-card p, .vision-card p {
+            color: #4a5568;
+            font-size: 1.1rem;
             line-height: 1.8;
         }
 
-        .video-summary strong {
-            display: block;
-            color: #2d5016;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
+        /* Course Previews */
+        .courses {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #fafafa 0%, #f8f9fa 100%);
         }
 
-        .complete-btn {
-            background: linear-gradient(135deg, #ffd700, #ffed4e);
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(45, 80, 22, 0.08);
+            border: 1px solid rgba(45, 80, 22, 0.05);
+            transition: all 0.4s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 80px rgba(45, 80, 22, 0.15);
+        }
+
+        .course-image {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+        }
+
+        .course-content { padding: 2.5rem; }
+
+        .course-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d5016;
+            margin-bottom: 1rem;
+        }
+
+        .course-description {
+            color: #4a5568;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .course-btn {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
             color: #2d5016;
             padding: 1rem 2rem;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 1rem;
-            margin-top: 2rem;
-            box-shadow: 0 6px 20px rgba(255,215,0,0.25);
+            font-size: 0.95rem;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.25);
         }
 
-        .complete-btn:hover { transform: translateY(-2px); }
-        .complete-btn.completed { background: #ccc; color: #666; cursor: not-allowed; box-shadow: none; }
-
-        .lesson-nav { display: flex; justify-content: space-between; gap: 1rem; }
-
-        .nav-btn {
-            background: white;
-            border: 2px solid #2d5016;
-            color: #2d5016;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.35);
         }
 
-        .nav-btn:hover:not(:disabled) { background: #2d5016; color: white; }
-        .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-        .nav-btn.next {
-            background: linear-gradient(135deg, #2d5016, #4a7c59);
-            border: none;
+        /* Impact */
+        .impact {
+            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #2d5016 100%);
             color: white;
-        }
-
-        /* ===== QUIZ STYLES ===== */
-        .quiz-card {
-            background: white;
-            border-radius: 16px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 30px rgba(45,80,22,0.08);
-            margin-bottom: 2rem;
-        }
-
-        .quiz-header {
-            background: linear-gradient(135deg, #2d5016 0%, #4a7c59 100%);
-            border-radius: 12px;
-            padding: 2rem;
-            color: white;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .quiz-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .quiz-header p { opacity: 0.9; font-size: 1rem; }
-
-        .quiz-progress-bar-wrap {
-            background: rgba(255,255,255,0.3);
-            border-radius: 10px;
-            height: 8px;
-            margin-top: 1rem;
+            padding: 6rem 0;
+            position: relative;
             overflow: hidden;
         }
 
-        .quiz-progress-bar-fill {
-            background: #ffd700;
-            height: 100%;
-            border-radius: 10px;
-            transition: width 0.4s ease;
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            text-align: center;
+            position: relative;
+            z-index: 1;
         }
 
-        .question-counter { font-size: 0.9rem; opacity: 0.85; margin-top: 0.5rem; }
+        .impact-stat {
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,215,0,0.1);
+            transition: all 0.3s ease;
+        }
 
-        .question-block { margin-bottom: 2rem; }
+        .impact-stat:hover { transform: translateY(-5px); background: rgba(255,255,255,0.1); }
 
-        .question-text {
+        .impact-number {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: #1a1a1a;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-            line-height: 1.5;
-        }
-
-        .options-list { display: flex; flex-direction: column; gap: 0.75rem; }
-
-        .option-btn {
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            padding: 1rem 1.5rem;
-            text-align: left;
-            cursor: pointer;
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            color: #1a1a1a;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .option-btn:hover:not(:disabled) {
-            border-color: #2d5016;
-            background: rgba(45,80,22,0.05);
-        }
-
-        .option-btn.correct { border-color: #28a745; background: rgba(40,167,69,0.1); color: #155724; }
-        .option-btn.wrong { border-color: #dc3545; background: rgba(220,53,69,0.1); color: #721c24; }
-        .option-btn:disabled { cursor: default; }
-
-        .option-letter {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: #e0e0e0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 4rem;
             font-weight: 700;
-            font-size: 0.85rem;
-            flex-shrink: 0;
-            transition: all 0.2s ease;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .option-btn.correct .option-letter { background: #28a745; color: white; }
-        .option-btn.wrong .option-letter { background: #dc3545; color: white; }
+        .impact-text { font-size: 1.2rem; font-weight: 500; opacity: 0.95; }
 
-        .feedback-box {
-            border-radius: 10px;
-            padding: 1rem 1.5rem;
-            margin-top: 1rem;
-            font-weight: 500;
-            display: none;
+        /* Testimonials */
+        .testimonials { padding: 6rem 0; background: white; }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
         }
 
-        .feedback-box.correct { background: rgba(40,167,69,0.1); color: #155724; border: 1px solid #28a745; display: block; }
-        .feedback-box.wrong { background: rgba(220,53,69,0.1); color: #721c24; border: 1px solid #dc3545; display: block; }
-
-        .quiz-nav-btn {
-            background: linear-gradient(135deg, #2d5016, #4a7c59);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 1.5rem;
-            transition: all 0.3s ease;
-            display: none;
+        .testimonial {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(45,80,22,0.08);
+            border: 1px solid rgba(45,80,22,0.05);
+            transition: all 0.4s ease;
+            position: relative;
         }
 
-        .quiz-nav-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(45,80,22,0.3); }
-        .quiz-nav-btn.visible { display: inline-block; }
-
-        .quiz-results { text-align: center; padding: 2rem; display: none; }
-        .quiz-results.visible { display: block; }
-
-        .score-circle {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .score-circle.pass { background: linear-gradient(135deg, #28a745, #20c997); }
-        .score-circle.fail { background: linear-gradient(135deg, #dc3545, #e83e8c); }
-
-        .score-number { font-size: 2.5rem; font-weight: 700; color: white; }
-        .score-label { font-size: 0.9rem; color: rgba(255,255,255,0.9); }
-
-        .results-title {
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 30px;
+            font-size: 6rem;
+            color: #ffd700;
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: #2d5016;
-            margin-bottom: 0.5rem;
+            opacity: 0.3;
+            line-height: 1;
         }
 
-        .results-msg { color: #555; font-size: 1.1rem; margin-bottom: 2rem; }
+        .testimonial:hover { transform: translateY(-5px); }
 
-        .results-breakdown {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 1.5rem;
+        .testimonial-text {
+            font-style: italic;
             margin-bottom: 2rem;
-            text-align: left;
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
-        .breakdown-item {
+        .testimonial-author { font-weight: 600; color: #2d5016; font-size: 1.05rem; }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .footer p { color: #aaa; font-size: 0.95rem; }
+
+        .social-links {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid #eee;
-            font-size: 0.95rem;
+            justify-content: center;
             gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
-        .breakdown-item:last-child { border-bottom: none; }
-        .correct-tag { color: #28a745; font-weight: 600; white-space: nowrap; }
-        .wrong-tag { color: #dc3545; font-weight: 600; white-space: nowrap; }
-
-        .results-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-
-        .retry-btn {
-            background: transparent;
-            border: 2px solid #2d5016;
-            color: #2d5016;
-            padding: 0.9rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .retry-btn:hover { background: #2d5016; color: white; }
-
-        .continue-btn {
+        .social-links a {
             background: linear-gradient(135deg, #ffd700, #ffed4e);
             color: #2d5016;
-            border: none;
-            padding: 0.9rem 2rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 1rem;
+            padding: 0.6rem;
+            border-radius: 50%;
+            text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+            font-size: 1.1rem;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .continue-btn:hover { transform: translateY(-2px); }
+        .social-links a:hover { transform: translateY(-3px); }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1.1rem; }
+            .mission-vision-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .section-title { font-size: 2rem; }
+        }
     </style>
 </head>
 <body>
@@ -556,931 +458,132 @@
             <a href="index.html" class="logo">LS FinLit</a>
             <ul class="nav-menu">
                 <li><a href="courses.html">Courses</a></li>
-                <li><a href="index.html#about">About Us</a></li>
-                <li><a href="index.html#contact" class="contact-btn">Contact</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact" class="contact-btn">Contact</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Dashboard -->
-    <div id="dashboardView" class="dashboard-view">
-        <div class="container">
-            <div class="dashboard-header">
-                <h1>Welcome to Your Financial Journey</h1>
-                <p>This course teaches you the real-life money skills you'll actually use. Let's build your financial confidence together!</p>
-                <div class="progress-container">
-                    <div class="progress-text">
-                        <span>Course Progress</span>
-                        <span id="progressPercent">0%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div id="progressFill" class="progress-fill" style="width: 0%"></div>
-                    </div>
-                </div>
-            </div>
-            <h2 class="section-title">Course Modules</h2>
-            <div id="modulesContainer"></div>
+    <section class="hero">
+        <div class="hero-container">
+            <h1>Empowering Kids to Be Money Smart — One Lesson at a Time</h1>
+            <p>Learn through stories, games, and engaging videos that make financial literacy fun and accessible for every child.</p>
+            <a href="courses.html" class="cta-button">Start Learning Today</a>
         </div>
-    </div>
+    </section>
 
-    <!-- Lesson View -->
-    <div id="lessonView" class="lesson-view">
+    <section class="mission-vision" id="about">
         <div class="container">
-            <button class="back-btn" onclick="showDashboard()">← Back to Dashboard</button>
-            <div class="lesson-card">
-                <div id="lessonBadge" class="lesson-badge"></div>
-                <h1 id="lessonTitle" class="lesson-title"></h1>
-                <div class="video-placeholder" id="videoArea">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2d5016" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
-                    </svg>
-                    <p style="color:#666;font-size:1.1rem;margin:1rem 0 0.5rem;">Video Content Area</p>
-                    <p style="color:#999;font-size:0.9rem;">Video coming soon</p>
+            <h2 class="section-title">Our Purpose</h2>
+            <div class="mission-vision-grid">
+                <div class="mission-card">
+                    <h3>🎯 Our Mission</h3>
+                    <p>To empower children with financial skills that most Americans lack through age-appropriate lessons, games, and engaging content.</p>
                 </div>
-                <div id="lessonContent" class="lesson-content"></div>
-                <button id="completeBtn" class="complete-btn" onclick="markComplete()">Mark as Complete</button>
-            </div>
-            <div class="lesson-nav">
-                <button id="prevBtn" class="nav-btn" onclick="prevLesson()">← Previous</button>
-                <button id="nextBtn" class="nav-btn next" onclick="nextLesson()">Next →</button>
+                <div class="vision-card">
+                    <h3>🌟 Our Vision</h3>
+                    <p>A generation of young leaders who are responsible and reasonable with money, equipped to make smart financial decisions for life.</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Quiz View -->
-    <div id="quizView" class="quiz-view">
+    <section class="courses" id="courses">
         <div class="container">
-            <button class="back-btn" onclick="showDashboard()">← Back to Dashboard</button>
-            <div class="quiz-card">
-                <div class="quiz-header">
-                    <h2 id="quizTitle">Module Quiz</h2>
-                    <p id="quizSubtitle">Test your knowledge</p>
-                    <div class="quiz-progress-bar-wrap">
-                        <div class="quiz-progress-bar-fill" id="quizProgressBar" style="width:0%"></div>
+            <h2 class="section-title">Featured Courses</h2>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-image">💰</div>
+                    <div class="course-content">
+                        <h3 class="course-title">Understanding Money</h3>
+                        <p class="course-description">Discover what money really is, why it has value, and how inflation affects your purchasing power over time.</p>
+                        <a href="courses.html?module=0&lesson=0" class="course-btn">Start Learning</a>
                     </div>
-                    <p class="question-counter" id="questionCounter">Question 1 of 5</p>
                 </div>
-
-                <div id="questionArea"></div>
-                <button class="quiz-nav-btn" id="quizNextBtn" onclick="nextQuestion()">Next Question →</button>
-
-                <div class="quiz-results" id="quizResults">
-                    <div class="score-circle" id="scoreCircle">
-                        <div class="score-number" id="scoreNumber"></div>
-                        <div class="score-label" id="scoreLabel"></div>
+                <div class="course-card">
+                    <div class="course-image">📊</div>
+                    <div class="course-content">
+                        <h3 class="course-title">Budgeting & Banking</h3>
+                        <p class="course-description">Learn how to build a budget that actually works, and how to use bank accounts to manage your money with confidence.</p>
+                        <a href="courses.html?module=1&lesson=0" class="course-btn">Start Learning</a>
                     </div>
-                    <h2 class="results-title" id="resultsTitle"></h2>
-                    <p class="results-msg" id="resultsMsg"></p>
-                    <div class="results-breakdown" id="resultsBreakdown"></div>
-                    <div class="results-actions">
-                        <button class="retry-btn" onclick="retryQuiz()">Retake Quiz</button>
-                        <button class="continue-btn" id="continueBtn" onclick="showDashboard()">Back to Dashboard</button>
+                </div>
+                <div class="course-card">
+                    <div class="course-image">🏦</div>
+                    <div class="course-content">
+                        <h3 class="course-title">Saving & Investing</h3>
+                        <p class="course-description">Explore the power of compound interest, how to set savings goals, and why starting to invest early changes everything.</p>
+                        <a href="courses.html?module=2&lesson=0" class="course-btn">Start Learning</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
+    <section class="impact">
+        <div class="container">
+            <div class="impact-grid">
+                <div class="impact-stat">
+                    <div class="impact-number">6</div>
+                    <div class="impact-text">Core Financial Modules</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">12</div>
+                    <div class="impact-text">In-Depth Lessons</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">100%</div>
+                    <div class="impact-text">Free to Access</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" style="padding: 5rem 0; background: white;">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 4rem; text-align:center;">
+                <div style="padding: 2rem; background: #fafafa; border-radius: 16px; border: 1px solid rgba(45,80,22,0.08);">
+                    <div style="font-size:2rem; margin-bottom:1rem;">📧</div>
+                    <h4 style="font-family:'Playfair Display',serif; color:#2d5016; margin-bottom:0.5rem;">Email</h4>
+                    <p style="color:#4a5568;">info.lsfinanciallit@gmail.com</p>
+                </div>
+                <div style="padding: 2rem; background: #fafafa; border-radius: 16px; border: 1px solid rgba(45,80,22,0.08);">
+                    <div style="font-size:2rem; margin-bottom:1rem;">📞</div>
+                    <h4 style="font-family:'Playfair Display',serif; color:#2d5016; margin-bottom:0.5rem;">Phone</h4>
+                    <p style="color:#4a5568;">(913) 260-0283</p>
+                    <p style="color:#4a5568;">(913) 439-8543</p>
+                </div>
+                <div style="padding: 2rem; background: #fafafa; border-radius: 16px; border: 1px solid rgba(45,80,22,0.08);">
+                    <div style="font-size:2rem; margin-bottom:1rem;">📍</div>
+                    <h4 style="font-family:'Playfair Display',serif; color:#2d5016; margin-bottom:0.5rem;">Location</h4>
+                    <p style="color:#4a5568;">Overland Park, KS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#">📘</a>
+                <a href="#">🐦</a>
+                <a href="#">📷</a>
+                <a href="#">💼</a>
+            </div>
+            <p>📧 info.lsfinanciallit@gmail.com &nbsp;|&nbsp; 📞 (913) 260-0283 &nbsp;|&nbsp; Overland Park, KS</p>
+            <p style="margin-top:0.75rem; opacity:0.5;"></p>
+        </div>
+    </footer>
 
     <script>
-        const modules = [
-            {
-                title: "Module 1: Money Foundations",
-                icon: "💰",
-                lessons: [
-                    {
-                        title: "Lesson 1.1: What is Money?",
-                        videoUrl: "https://www.youtube.com/embed/753CWCrSQ8Q",
-                        summary: "Money works because of trust, not because of what it's made of. Before currency existed, people bartered — but that required both parties to want what the other had. Over time, societies agreed on common items of value, eventually leading to coins, paper bills, and today's digital money. Understanding that money is simply a tool — one that gives you choices and options — is the foundation of everything else in this course.",
-                        content: `Money is something we use every day, but most people never stop to ask what it actually is or why it works.
-
-**From Bartering to Currency**
-Thousands of years ago, people traded goods directly — grain for tools, cloth for food. The problem was that both people had to want what the other had. Societies solved this by agreeing on items everyone would accept as valuable: beads, salt, metal coins, and eventually paper bills.
-
-**Why Money Has Value**
-The paper in your wallet isn't valuable on its own. What makes money powerful is trust — the shared belief that other people will accept it in exchange for real goods and services. Today, most money doesn't even exist physically. It lives digitally in bank accounts.
-
-**Money as a Tool**
-Money is not emotional, and it's not about status. It's a resource that gives you options: it covers your needs (food, housing, transportation) and pays for experiences that improve your life.
-
-**Ways People Earn Money**
-Earned income comes from working. Passive income flows in without constant effort. Portfolio income comes from investments. At the foundation, money is simply a tool you manage — and understanding how it works is the first step to using it well.`
-                    },
-                    {
-                        title: "Lesson 1.2: Inflation & Purchasing Power",
-                        videoUrl: "https://www.youtube.com/embed/6zkGST_T8b8",
-                        summary: "Inflation means your money buys less over time — not because the dollar amount changes, but because prices rise. This happens naturally as demand and production costs increase. Even at a modest 3% annual rate, $100 today could cost $130 in ten years. That's why simply holding cash isn't enough: your savings and investments need to grow at least as fast as inflation to maintain their real value. Understanding inflation helps you make smarter decisions about earning, spending, and planning for the future.",
-                        content: `Have you noticed that things cost more than they used to? That steady change has a name — and understanding it changes how you think about money.
-
-**What Is Inflation?**
-Inflation means that each dollar buys a little less than it used to. Your money doesn't physically shrink, but its purchasing power does. Over time, the same amount of money covers fewer goods and services.
-
-**Why It Happens**
-As demand rises and production costs increase — wages, materials, transportation — prices adjust. Governments and central banks manage inflation through monetary policy. Moderate inflation is expected and normal.
-
-**Why It Matters for Your Money**
-If money just sits without growing, inflation slowly reduces what it can do for you. Something that costs $100 today could cost over $130 in ten years at 3% annual inflation. That's why saving and investing matter — when your money grows, it has the potential to outpace inflation.
-
-**The Long-Term Mindset**
-Inflation also affects wages. Ideally, income rises over time to keep pace with rising prices. Understanding this helps you evaluate job offers, negotiate pay, and think long-term about your earning power.`
-                    }
-                ],
-                quiz: {
-                    title: "Module 1 Quiz: Money Foundations",
-                    subtitle: "5 questions · Based on Lessons 1.1 & 1.2",
-                    questions: [
-                        {
-                            q: "What made early bartering systems inefficient?",
-                            options: ["People didn't have enough goods to trade", "Both parties had to want what the other person had", "Coins hadn't been invented yet", "Governments banned bartering"],
-                            answer: 1,
-                            explanation: "Bartering required a 'double coincidence of wants' — both people had to need what the other offered, making trade slow and difficult."
-                        },
-                        {
-                            q: "What gives modern paper money its value?",
-                            options: ["The paper it's printed on", "The gold stored in government vaults", "Shared trust that others will accept it", "The amount of ink used to print it"],
-                            answer: 2,
-                            explanation: "Money works because of trust — the shared belief that other people will accept it in exchange for goods and services."
-                        },
-                        {
-                            q: "Which type of income comes from investments?",
-                            options: ["Earned income", "Passive income", "Portfolio income", "Bartered income"],
-                            answer: 2,
-                            explanation: "Portfolio income comes from investments such as stocks, bonds, and other financial assets."
-                        },
-                        {
-                            q: "What does inflation mean for your money's purchasing power?",
-                            options: ["Your money buys more over time", "Your money buys the same amount over time", "Your money buys less over time", "Your money disappears over time"],
-                            answer: 2,
-                            explanation: "Inflation means each dollar buys a little less than it used to — your purchasing power decreases even if the dollar amount stays the same."
-                        },
-                        {
-                            q: "Why is it important for savings and investments to grow over time?",
-                            options: ["To impress friends and family", "To outpace inflation and maintain purchasing power", "Because banks require it", "To avoid paying taxes"],
-                            answer: 1,
-                            explanation: "When your money grows through interest or investments, it has the potential to outpace inflation — otherwise inflation slowly reduces what your savings can actually buy."
-                        }
-                    ]
-                }
-            },
-            {
-                title: "Module 2: Budgeting & Banking",
-                icon: "📊",
-                lessons: [
-                    {
-                        title: "Lesson 2.1: Budgeting",
-                        videoUrl: "https://www.youtube.com/embed/PLBnm8fIfwA?si=HOnr2rO-0hM65q0c",
-                        summary: "A budget isn't about restriction — it's about clarity. When you plan where your money goes before you spend it, you eliminate the surprise of running out. The 50/30/20 rule is one popular framework: 50% for needs, 30% for wants, and 20% for savings. But the specific method matters less than the habit itself. Even tracking your spending for just a week can reveal patterns you never noticed — forgotten subscriptions, small daily purchases that add up, and impulse buys that didn't feel significant in the moment.",
-                        content: `Most people don't realize where their money goes until it's gone. Budgeting gives you clarity before that happens.
-
-**A Budget Is a Plan**
-A budget is simply deciding ahead of time how you want to use your money, instead of figuring it out after it's spent. People avoid budgeting because they associate it with cutting things out — but really it's about alignment: making sure your spending matches what actually matters to you.
-
-**Different Approaches**
-One common framework is the 50/30/20 rule — dividing money into needs, wants, and savings. Another method assigns every dollar a purpose before you spend it. The specific system matters less than the habit of awareness.
-
-**What Tracking Reveals**
-Even tracking spending for just a short period can be eye-opening. You start noticing patterns — subscriptions you forgot about, frequent small purchases, and impulse spending that adds up over time.
-
-**Budgeting Creates Freedom**
-A budget doesn't eliminate flexibility — it creates it. When you know where your money is going, you can adjust without stress. You can spend confidently because you've already accounted for it. The goal isn't perfection. It's consistency and awareness.`
-                    },
-                    {
-                        title: "Lesson 2.2: Banking Essentials",
-                        videoUrl: "https://www.youtube.com/embed/lMaAZRwDCVY",
-                        summary: "Banks do two main things: hold your money safely and help you manage it efficiently. A checking account is for everyday spending; a savings account is where you set money aside and earn a small amount of interest for doing so. In the US, FDIC insurance protects your deposits if a bank fails. Online banking tools give you real-time visibility into your spending, help you set alerts, and make it easy to automate saving. Understanding how accounts work — including fees to watch out for — is a foundational money skill.",
-                        content: `Banks might seem complicated at first, but their main purpose is simple: they store your money safely and make it easier to manage.
-
-**Checking vs. Savings Accounts**
-A checking account is for everyday spending — where paychecks are deposited and your debit card pulls from. A savings account is for money you don't plan to spend immediately. It usually earns interest, meaning the bank pays you a small amount for keeping your money there.
-
-**FDIC Protection**
-Banks in the United States are insured by the FDIC, which protects deposits up to certain limits if a bank fails. This security is something keeping cash at home cannot provide.
-
-**Online Banking Tools**
-Online banking lets you review transactions, transfer funds, deposit checks, automate savings, and set alerts from your phone. This visibility helps you stay informed about spending patterns and avoid overdrafts.
-
-**Fraud Protection and Fees**
-Banks provide fraud protection — if unauthorized transactions occur, banks can investigate and often recover funds. Understanding fees is also important: some accounts charge monthly maintenance or overdraft fees. Knowing the terms of your account helps you avoid unnecessary costs.`
-                    }
-                ],
-                quiz: {
-                    title: "Module 2 Quiz: Budgeting & Banking",
-                    subtitle: "5 questions · Based on Lessons 2.1 & 2.2",
-                    questions: [
-                        {
-                            q: "What is the main purpose of a budget?",
-                            options: ["To stop you from enjoying your money", "To decide ahead of time how to use your money", "To track how much debt you have", "To impress your bank"],
-                            answer: 1,
-                            explanation: "A budget is simply a plan — deciding ahead of time how you want to use your money instead of figuring it out after it's spent."
-                        },
-                        {
-                            q: "In the 50/30/20 rule, what does the 20% represent?",
-                            options: ["Entertainment", "Needs", "Savings", "Wants"],
-                            answer: 2,
-                            explanation: "In the 50/30/20 rule: 50% goes to needs, 30% to wants, and 20% to savings."
-                        },
-                        {
-                            q: "What type of bank account is best for everyday spending?",
-                            options: ["Savings account", "Investment account", "Checking account", "Retirement account"],
-                            answer: 2,
-                            explanation: "A checking account is designed for everyday spending — it's where paychecks are deposited and where your debit card pulls money from."
-                        },
-                        {
-                            q: "What does FDIC insurance protect?",
-                            options: ["Your credit score", "Bank deposits up to a certain limit if the bank fails", "Your investments in the stock market", "Your debit card from fraud"],
-                            answer: 1,
-                            explanation: "The FDIC insures bank deposits up to certain limits if a bank fails, providing security that keeping cash at home cannot."
-                        },
-                        {
-                            q: "Why does tracking spending — even briefly — help with budgeting?",
-                            options: ["It automatically saves money for you", "It reveals patterns like forgotten subscriptions and impulse purchases", "It eliminates the need for a bank account", "It increases your credit score"],
-                            answer: 1,
-                            explanation: "Tracking spending reveals patterns — forgotten subscriptions, frequent small purchases, and impulse spending that adds up more than expected."
-                        }
-                    ]
-                }
-            },
-            {
-                title: "Module 3: Saving",
-                icon: "🏦",
-                lessons: [
-                    {
-                        title: "Lesson 3.1: Saving Essentials",
-                        videoUrl: "https://www.youtube.com/embed/r28LxTjfxLE",
-                        summary: "Saving isn't about how much you earn — it's about being consistent. Life throws unexpected expenses at everyone: car repairs, medical bills, broken equipment. Without savings, those moments lead to debt. With savings, they're just inconveniences. The key habit to build first is an emergency fund — even starting with $500 makes a real difference. From there, separating short-term goals (accessible savings accounts) from long-term goals (accounts that grow over time) helps your money work harder for you. Paying yourself first — saving before spending — is the shift that makes it stick.",
-                        content: `Saving often feels optional — something you'll start later when you earn more. But saving isn't about how much you make. It's about how consistently you prepare.
-
-**Why Saving Matters**
-Life is unpredictable. Unexpected expenses are part of reality — car repairs, medical bills, last-minute travel, broken technology. When you have savings, those moments are manageable. Without savings, they create stress and often lead to debt.
-
-**Emergency Fund First**
-Financial experts recommend building an emergency fund before anything else. Even starting with a small goal — like $500 — creates protection. Over time, that can grow into several months of living expenses.
-
-**Short-Term vs. Long-Term Goals**
-Short-term savings (a trip, a device, an event) should be kept somewhere accessible, like a savings account. Long-term goals (a car, college, investing) may benefit from accounts that earn more interest or allow investments to grow.
-
-**The Habit Matters More Than the Amount**
-Small, consistent deposits build discipline and momentum. Saving $10 a week becomes over $500 in a year. Pay yourself first: save before you spend, not after. This simple shift turns saving from an afterthought into a priority.`
-                    },
-                    {
-                        title: "Lesson 3.2: Compound Interest & Goals",
-                        videoUrl: "https://www.youtube.com/embed/zKCQCyalgxU",
-                        summary: "Compound interest is the most powerful force in personal finance — and it rewards people who start early, not people who start big. When your money earns interest, and that interest earns more interest on top of it, growth accelerates over time. The math sounds slow at first, but over years and decades, small consistent contributions snowball into significant wealth. Pairing this with a clear emergency fund and specific savings goals gives your money both direction and protection. Time is the ingredient that makes all of it work.",
-                        content: `There's a concept in finance that doesn't look impressive at first but becomes incredibly powerful over time: compound interest.
-
-**How Compound Interest Works**
-Compound interest means your money earns interest — and then that interest earns additional interest. In the early stages, growth feels slow. But over time, the growth accelerates because each new gain builds on the previous one.
-
-**Time Is the Key Ingredient**
-The most important factor isn't starting with a large amount — it's starting early and staying consistent. Even small monthly contributions, compounded over years, can grow far beyond the original amount invested.
-
-**Emergency Funds and Clear Goals**
-An emergency fund prevents unexpected expenses from turning into debt. Clear financial goals give saving direction and motivation. Breaking large goals into smaller milestones makes them more manageable and measurable.
-
-**Everything Works Together**
-Compound growth builds wealth. Emergency funds protect stability. Goals provide direction. Together, these concepts form the foundation of a solid financial life.`
-                    }
-                ],
-                quiz: {
-                    title: "Module 3 Quiz: Saving",
-                    subtitle: "5 questions · Based on Lessons 3.1 & 3.2",
-                    questions: [
-                        {
-                            q: "What is the main purpose of an emergency fund?",
-                            options: ["To invest in the stock market", "To cover unexpected expenses and avoid going into debt", "To pay for vacations", "To keep your credit score high"],
-                            answer: 1,
-                            explanation: "An emergency fund acts as a financial buffer — when unexpected expenses happen, having savings makes them manageable instead of stressful."
-                        },
-                        {
-                            q: "What does 'paying yourself first' mean?",
-                            options: ["Spending on yourself before paying bills", "Saving money before spending on anything else", "Paying off your credit card first", "Earning money before spending it"],
-                            answer: 1,
-                            explanation: "Paying yourself first means saving a portion of income before spending on anything else — it turns saving from an afterthought into a priority."
-                        },
-                        {
-                            q: "How does compound interest work?",
-                            options: ["Your savings earn a flat rate every year", "Your interest earns additional interest on top of itself", "The government adds interest to your account", "Interest only applies to loans"],
-                            answer: 1,
-                            explanation: "Compound interest means your money earns interest, and then that interest earns more interest — growth accelerates over time."
-                        },
-                        {
-                            q: "Why does starting to save early matter so much?",
-                            options: ["Banks give you better service if you're a long-time customer", "The longer your money compounds, the more powerful the growth", "Interest rates are higher for younger people", "The government gives tax breaks to early savers"],
-                            answer: 1,
-                            explanation: "Time is the most powerful factor in compounding — the earlier you start, the more time your money has to grow exponentially."
-                        },
-                        {
-                            q: "Where should short-term savings (like for a trip) be kept?",
-                            options: ["In a stock market investment account", "Under your mattress for safety", "In an accessible savings account", "In a 30-year retirement fund"],
-                            answer: 2,
-                            explanation: "Short-term savings should be kept somewhere accessible like a savings account — long-term goals can benefit from accounts that grow over more time."
-                        }
-                    ]
-                }
-            },
-            {
-                title: "Module 4: Credit & Debt",
-                icon: "💳",
-                lessons: [
-                    {
-                        title: "Lesson 4.1: Credit Basics",
-                        videoUrl: "https://www.youtube.com/embed/fJYZW_MPyS4",
-                        summary: "Your credit score is your financial reputation — a number that tells lenders, landlords, and even some employers how responsibly you manage borrowed money. It's shaped primarily by whether you pay on time, how much of your available credit you use, and how long you've had accounts open. A high score unlocks lower interest rates and more opportunities. A low score makes borrowing more expensive and harder. Credit cards are powerful tools when paid in full each month — and expensive traps when balances are carried and interest accumulates.",
-                        content: `Credit becomes important long before most people realize it. It quietly shapes opportunities throughout adulthood.
-
-**What Is Credit?**
-Credit is the ability to borrow money with the promise to repay it later. When you use credit responsibly, you build a credit history — summarized in your credit score, which reflects how reliable you are with borrowed money.
-
-**What Affects Your Credit Score**
-Payment history is the most important factor — paying bills on time builds trust. Credit utilization (how much of your available credit you use) also matters. The length of your credit history, types of accounts, and how often you apply for new credit all influence your score.
-
-**Who Uses Your Credit Score**
-Lenders use it to decide whether to approve loans and what interest rate to offer. Landlords may check it before approving a lease. Insurance companies sometimes factor it into pricing. Some employers review it during hiring. A higher score means lower costs and more opportunities.
-
-**Credit Cards Are Tools, Not Free Money**
-When used responsibly — paid off in full and on time — they help build credit without costing interest. When misused, high balances and missed payments damage your score quickly and interest accumulates fast.`
-                    },
-                    {
-                        title: "Lesson 4.2: Debt & Responsible Credit Use",
-                        videoUrl: "https://www.youtube.com/embed/loP3Z5PoN18",
-                        summary: "Not all debt is bad — student loans, mortgages, and business loans can support real growth when used carefully. The problem is usually not debt itself, but misunderstanding how interest works. When you carry a balance, interest compounds against you, turning small purchases into long-term costs. Making only minimum payments keeps the account open but lets that interest keep building. Responsible borrowing means understanding the full cost before you borrow, keeping payments above the minimum, and only taking on debt you have a real plan to repay.",
-                        content: `Debt is often described as something negative, but it's more accurate to think of it as a financial tool.
-
-**Not All Debt Is Equal**
-Some forms of debt — student loans, business loans, mortgages — can support long-term growth when used carefully. These are considered strategic debts. Other forms, especially high-interest credit card debt, can become expensive quickly.
-
-**How Interest Makes Debt Grow**
-Interest is the cost of borrowing. If balances are not paid off in full, interest accumulates and increases the total owed. Over time, this turns small purchases into long-term financial burdens. Minimum payments keep the account current but allow interest to keep building.
-
-**Borrowing Responsibly**
-Responsible credit use means understanding the terms before borrowing — interest rates, repayment schedules, and penalties. It also means borrowing within your ability to repay. Paying more than the minimum reduces the total cost and shortens repayment time.
-
-**The Bottom Line**
-Debt itself is not automatically harmful. Problems arise from misunderstanding interest, missing payments, or borrowing beyond your financial capacity. Used responsibly, credit builds opportunities. Used carelessly, it limits flexibility.`
-                    }
-                ],
-                quiz: {
-                    title: "Module 4 Quiz: Credit & Debt",
-                    subtitle: "5 questions · Based on Lessons 4.1 & 4.2",
-                    questions: [
-                        {
-                            q: "What is a credit score?",
-                            options: ["A measure of how much money you have in the bank", "A summary of how reliably you manage borrowed money", "Your total amount of debt", "The interest rate your bank charges you"],
-                            answer: 1,
-                            explanation: "A credit score summarizes your credit history and reflects how reliable you are with borrowed money."
-                        },
-                        {
-                            q: "Which factor has the MOST impact on your credit score?",
-                            options: ["How many credit cards you have", "The type of bank you use", "Your payment history", "Your annual income"],
-                            answer: 2,
-                            explanation: "Payment history is the most important factor — consistently paying bills on time builds trust with lenders."
-                        },
-                        {
-                            q: "Besides lenders, who else might check your credit score?",
-                            options: ["Only banks and credit card companies", "Landlords, insurers, and sometimes employers", "The IRS only", "No one else is allowed to check it"],
-                            answer: 1,
-                            explanation: "Landlords may check credit before approving a lease, insurers factor it into pricing, and some employers review it during hiring."
-                        },
-                        {
-                            q: "What happens if you only make minimum payments on a credit card balance?",
-                            options: ["Your credit score improves quickly", "Interest keeps accumulating, increasing what you owe", "The balance disappears after 12 months", "You avoid all interest charges"],
-                            answer: 1,
-                            explanation: "Minimum payments keep the account current but allow interest to keep building — turning small purchases into long-term expensive debt."
-                        },
-                        {
-                            q: "Which of the following is considered a 'strategic' use of debt?",
-                            options: ["Carrying a high credit card balance for luxury items", "Taking out a student loan to invest in your education", "Using a payday loan to cover daily expenses", "Borrowing money to buy video games"],
-                            answer: 1,
-                            explanation: "Student loans, mortgages, and business loans are strategic because they can support long-term growth when used carefully and within your ability to repay."
-                        }
-                    ]
-                }
-            },
-            {
-                title: "Module 5: Investing",
-                icon: "📈",
-                lessons: [
-                    {
-                        title: "Lesson 5.1: Investing Basics",
-                        videoUrl: "https://www.youtube.com/embed/qCvrLrHq0Mc",
-                        summary: "Investing means putting your money into assets that have the potential to grow over time — stocks, bonds, index funds, and more. Unlike saving, which prioritizes safety, investing prioritizes growth. Markets go up and down daily, but historically, diversified investments held over long periods have grown significantly. The most powerful force in investing is compound growth: returns that earn their own returns, accelerating over time. You don't need to be an expert or predict the market. You just need to start early, stay consistent, and think long-term.",
-                        content: `Saving protects your money. Investing helps it grow. If saving is the foundation of financial stability, investing is the engine that builds long-term wealth.
-
-**What Is Investing?**
-Investing means allocating money into assets that have the potential to increase in value over time. Unlike saving — which prioritizes safety and accessibility — investing prioritizes growth.
-
-**Types of Investments**
-Stocks represent ownership in companies. When the company grows, the value of your shares can increase. Bonds represent loans you give to governments or corporations — they pay interest over time and are generally less volatile. Index funds and ETFs spread your money across many companies at once, reducing risk through diversification.
-
-**Risk and Volatility Are Normal**
-Investing carries risk — values rise and fall. Markets fluctuate daily due to economic conditions and global events. Short-term volatility is normal. Historically, diversified investments held over long periods have grown despite temporary declines.
-
-**Compound Growth and Time**
-When your returns begin earning returns themselves, growth accelerates. The earlier you start, the more time compounding has to work. Successful investing isn't about predicting markets — it's about patience, consistency, and a long-term perspective.`
-                    },
-                    {
-                        title: "Lesson 5.2: Long-Term Investing",
-                        videoUrl: "https://www.youtube.com/embed/iFzHcl0-YOM",
-                        summary: "The biggest advantage a young investor has isn't knowledge — it's time. Long-term investing means staying in the market through ups and downs rather than reacting to daily volatility. Diversification through index funds spreads risk across hundreds of companies at once. Accounts like Roth IRAs and custodial brokerage accounts help investments grow with tax advantages. The investors who do best over time aren't the ones who trade the most — they're the ones who contribute consistently and let compounding do the heavy lifting over years and decades.",
-                        content: `One of the most powerful advantages in investing isn't knowledge or luck — it's time.
-
-**The Power of Staying Invested**
-Long-term investing allows compound growth to develop over years or decades. Even modest, consistent contributions can grow substantially when given enough time. Diversification reduces risk compared to putting everything into one company.
-
-**Handling Market Volatility**
-Markets fluctuate daily. Short-term volatility is normal and expected. Long-term investors focus less on daily movements and more on consistent contributions and overall trends. Trying to time the market often leads to emotional decisions — staying invested through ups and downs historically produces stronger results.
-
-**Accounts for Young Investors**
-Accounts such as custodial brokerage accounts or Roth IRAs allow young investors to start early. Tax-advantaged accounts can help investments grow more efficiently over time by reducing taxes on gains.
-
-**Discipline Over Activity**
-Long-term investing rewards patience and discipline more than constant activity. The most successful investors aren't the ones who move fastest — they're the ones who stay consistent and let time do the work.`
-                    }
-                ],
-                quiz: {
-                    title: "Module 5 Quiz: Investing",
-                    subtitle: "5 questions · Based on Lessons 5.1 & 5.2",
-                    questions: [
-                        {
-                            q: "What does buying a stock represent?",
-                            options: ["Lending money to a government", "Partial ownership in a company", "A guaranteed fixed return", "A loan to a corporation"],
-                            answer: 1,
-                            explanation: "Stocks represent ownership in companies. When the company grows and becomes more profitable, the value of your shares can increase."
-                        },
-                        {
-                            q: "What is diversification in investing?",
-                            options: ["Putting all your money into the best-performing stock", "Spreading money across many different assets to reduce risk", "Only investing in government bonds", "Changing your investments every week"],
-                            answer: 1,
-                            explanation: "Diversification means spreading your money across many assets so one poor performer doesn't significantly harm your overall portfolio."
-                        },
-                        {
-                            q: "What is the main advantage of starting to invest early?",
-                            options: ["You get higher interest rates when you're young", "More time for compound growth to multiply your money", "The stock market performs better for young investors", "Banks charge lower fees for young investors"],
-                            answer: 1,
-                            explanation: "The earlier you start, the more time compounding has to work. Even small contributions grow substantially over decades."
-                        },
-                        {
-                            q: "How should a long-term investor respond to short-term market drops?",
-                            options: ["Immediately sell everything to cut losses", "Panic and move everything to cash", "Stay consistent and remain invested", "Stop contributing until the market recovers"],
-                            answer: 2,
-                            explanation: "Long-term investors stay consistent through volatility. Staying invested through market ups and downs historically produces stronger long-term results."
-                        },
-                        {
-                            q: "What type of account allows young investors to grow money with tax advantages?",
-                            options: ["A standard checking account", "A Roth IRA or custodial brokerage account", "A prepaid debit card", "A cash savings jar"],
-                            answer: 1,
-                            explanation: "Accounts like Roth IRAs and custodial brokerage accounts allow young investors to start early and grow money more efficiently through tax advantages."
-                        }
-                    ]
-                }
-            },
-            {
-                title: "Module 6: Income & Taxes",
-                icon: "💼",
-                lessons: [
-                    {
-                        title: "Lesson 6.1: Understanding Taxes",
-                        videoUrl: "https://www.youtube.com/embed/9xdi2uPB7os",
-                        summary: "Taxes fund the systems that everyone relies on — roads, schools, emergency services, healthcare programs, and national defense. When you start working, your employer automatically withholds a portion of each paycheck and sends it to the government on your behalf. The W-4 form you fill out at a new job determines how much gets withheld. At year end, your W-2 summarizes everything, and filing a tax return reconciles what you paid against what you actually owed. A refund means you overpaid throughout the year. Understanding this process removes the stress and mystery from tax season entirely.",
-                        content: `Taxes can seem confusing at first, but they play a straightforward role in society. Once you understand the basic structure, taxes become less intimidating and more predictable.
-
-**What Taxes Fund**
-Taxes fund public services: education, infrastructure, emergency services, healthcare programs, national defense, transportation, parks, and community development.
-
-**How Withholding Works**
-When you begin working, a portion of your earnings is automatically withheld for federal, state, and sometimes local taxes. Your employer sends this percentage to the government on your behalf. When you start a job, you complete a W-4 form to determine how much is withheld.
-
-**W-2 and Filing Your Return**
-At the end of the year, your employer provides a W-2 summarizing your total income and taxes withheld. You use this to file your tax return. If too much was withheld, you receive a refund. If too little, you owe the difference.
-
-**Types of Taxes**
-Income taxes are based on what you earn. Payroll taxes fund Social Security and Medicare. Sales taxes apply when you purchase goods. Property taxes apply to owned real estate. Understanding taxes helps you budget accurately and avoid surprises during tax season.`
-                    },
-                    {
-                        title: "Lesson 6.2: Paychecks & Filing",
-                        videoUrl: "https://drive.google.com/file/d/1-mpvtcj0vsXlXzjlfPULFk5wpRd7463e/preview",
-                        summary: "When you get your first paycheck, the number will likely be smaller than you expected — and that's completely normal. Gross pay is your total earnings before deductions. Net pay is what actually hits your account after federal taxes, state taxes, Social Security, Medicare, and any other withholdings. Your pay stub breaks all of this down in detail. Reading it regularly helps you stay informed and catch errors early. Filing your annual tax return compares what you paid all year to what you actually owed — resulting in either a refund or a small payment. Once you understand the system, it's straightforward.",
-                        content: `When you receive your paycheck, the amount deposited isn't the full story.
-
-**Gross Pay vs. Net Pay**
-Gross pay is the total amount you earned before any deductions. From that, taxes and other required contributions are withheld — federal income tax, state income tax, Social Security, and Medicare. What remains is your net pay — your actual take-home amount.
-
-**Reading Your Pay Stub**
-Your pay stub shows your earnings, tax withholdings, and benefit deductions in detail. Reviewing it regularly prevents confusion and helps you catch errors early. Understanding the difference between gross and net pay helps you plan realistically.
-
-**Filing Your Tax Return**
-During tax season, you file a return to report how much you earned and how much was already withheld. A refund means too much was withheld. Owing means too little was withheld. Filing reconciles everything into a clear picture.
-
-**Why It All Connects**
-Understanding your paycheck connects earning, taxes, and budgeting into one clear system — giving you confidence to make informed financial decisions.`
-                    }
-                ],
-                quiz: {
-                    title: "Module 6 Quiz: Income & Taxes",
-                    subtitle: "5 questions · Based on Lessons 6.1 & 6.2",
-                    questions: [
-                        {
-                            q: "What is the purpose of the W-4 form you complete when starting a job?",
-                            options: ["To apply for a bank account", "To determine how much federal income tax is withheld from your paycheck", "To file your annual tax return", "To report your savings to the government"],
-                            answer: 1,
-                            explanation: "The W-4 helps your employer determine how much federal income tax to withhold from each paycheck."
-                        },
-                        {
-                            q: "What is 'net pay'?",
-                            options: ["Your total earnings before any deductions", "The amount you earn before taxes", "Your take-home pay after taxes and deductions", "The taxes you owe at the end of the year"],
-                            answer: 2,
-                            explanation: "Net pay (take-home pay) is what you actually receive after taxes and other deductions are subtracted from your gross pay."
-                        },
-                        {
-                            q: "What does it mean to receive a tax refund?",
-                            options: ["The government is giving you free money", "You underpaid your taxes throughout the year", "Too much tax was withheld from your paychecks during the year", "Your income was too low to be taxed"],
-                            answer: 2,
-                            explanation: "A refund means too much tax was withheld from your paychecks — the government returns the overpayment when you file."
-                        },
-                        {
-                            q: "Which taxes specifically fund Social Security and Medicare?",
-                            options: ["Income taxes", "Property taxes", "Sales taxes", "Payroll taxes"],
-                            answer: 3,
-                            explanation: "Payroll taxes (FICA) fund Social Security and Medicare — these appear as separate deductions on your pay stub."
-                        },
-                        {
-                            q: "What document does your employer give you at the end of the year to help you file taxes?",
-                            options: ["W-4", "1040", "W-2", "Schedule C"],
-                            answer: 2,
-                            explanation: "The W-2 form summarizes your total income and taxes withheld for the year — you use it when filing your annual tax return."
-                        }
-                    ]
-                }
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'linear-gradient(135deg, #2d5016 0%, #4a7c59 100%)';
             }
-        ];
-
-        let currentModule = 0;
-        let currentLesson = 0;
-        let completedLessons = {};
-        let passedQuizzes = {};
-
-        let activeQuizModule = 0;
-        let quizQuestions = [];
-        let currentQuestionIdx = 0;
-        let quizAnswers = [];
-        let quizAnswered = false;
-
-        function loadProgress() {
-            try {
-                const saved = localStorage.getItem('finlit-progress');
-                const savedQ = localStorage.getItem('finlit-quizzes');
-                if (saved) completedLessons = JSON.parse(saved);
-                if (savedQ) passedQuizzes = JSON.parse(savedQ);
-                updateProgress();
-            } catch(e) {}
-        }
-
-        function saveProgress() {
-            localStorage.setItem('finlit-progress', JSON.stringify(completedLessons));
-            localStorage.setItem('finlit-quizzes', JSON.stringify(passedQuizzes));
-            updateProgress();
-        }
-
-        function updateProgress() {
-            const totalLessons = modules.reduce((sum, mod) => sum + mod.lessons.length, 0);
-            const totalItems = totalLessons + modules.length;
-            const completedCount = Object.keys(completedLessons).length + Object.keys(passedQuizzes).length;
-            const percent = Math.round((completedCount / totalItems) * 100);
-            document.getElementById('progressPercent').textContent = percent + '%';
-            document.getElementById('progressFill').style.width = percent + '%';
-        }
-
-        function isModuleLocked(moduleIdx) {
-            return false;
-        }
-
-        function renderModules() {
-            const container = document.getElementById('modulesContainer');
-            container.innerHTML = '';
-            modules.forEach((module, moduleIdx) => {
-                const locked = isModuleLocked(moduleIdx);
-                const card = document.createElement('div');
-                card.className = `module-card${locked ? ' locked-module' : ''}`;
-
-                let lessonsHTML = '';
-
-                if (locked) {
-                    // Show locked banner instead of lesson list
-                    const prevModuleTitle = modules[moduleIdx - 1].title;
-                    lessonsHTML = `
-                        <div class="locked-banner">
-                            🔒 Complete and pass the <strong>${prevModuleTitle} Quiz</strong> to unlock this module.
-                        </div>`;
-                } else {
-                    module.lessons.forEach((lesson, lessonIdx) => {
-                        const key = `${moduleIdx}-${lessonIdx}`;
-                        const done = completedLessons[key];
-                        lessonsHTML += `
-                            <div class="lesson-item ${done ? 'completed' : ''}" onclick="goToLesson(${moduleIdx}, ${lessonIdx})">
-                                <div class="lesson-left">
-                                    <span style="font-size:1.2rem">${done ? '✓' : '▶'}</span>
-                                    <span class="lesson-text">${lesson.title}</span>
-                                </div>
-                                <span style="font-size:1.2rem">›</span>
-                            </div>`;
-                    });
-
-                    const qPassed = passedQuizzes[moduleIdx];
-                    lessonsHTML += `
-                        <div class="lesson-item quiz-item ${qPassed ? 'quiz-passed' : ''}" onclick="startQuiz(${moduleIdx})">
-                            <div class="lesson-left">
-                                <span style="font-size:1.2rem">${qPassed ? '🏆' : '📝'}</span>
-                                <span class="lesson-text" style="color:#2d5016;font-weight:600">
-                                    Module ${moduleIdx + 1} Quiz
-                                    ${qPassed ? '<span style="color:#28a745;font-size:0.85rem;margin-left:0.5rem">Passed ✓</span>' : ''}
-                                </span>
-                            </div>
-                            <span style="font-size:1.2rem">›</span>
-                        </div>`;
-                }
-
-                card.innerHTML = `
-                    <div class="module-header">
-                        <div class="module-icon">${locked ? '🔒' : module.icon}</div>
-                        <h3 class="module-title">${module.title}</h3>
-                    </div>
-                    ${lessonsHTML}`;
-
-                container.appendChild(card);
-            });
-        }
-
-        function goToLesson(moduleIdx, lessonIdx) {
-            if (isModuleLocked(moduleIdx)) return;
-            currentModule = moduleIdx;
-            currentLesson = lessonIdx;
-            showLesson();
-        }
-
-        function showLesson() {
-            document.getElementById('dashboardView').classList.add('hidden');
-            document.getElementById('lessonView').classList.add('active');
-            document.getElementById('quizView').classList.remove('active');
-
-            const module = modules[currentModule];
-            const lesson = module.lessons[currentLesson];
-            const key = `${currentModule}-${currentLesson}`;
-
-            document.getElementById('lessonBadge').textContent = module.title;
-            document.getElementById('lessonTitle').textContent = lesson.title;
-
-            const videoArea = document.getElementById('videoArea');
-            if (lesson.videoUrl) {
-                videoArea.innerHTML = `
-                    <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;">
-                        <iframe style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:12px;"
-                            src="${lesson.videoUrl}" title="YouTube video player" frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowfullscreen></iframe>
-                    </div>`;
-                videoArea.style.padding = '0';
-                videoArea.style.background = 'none';
-                videoArea.style.border = 'none';
-                videoArea.style.minHeight = 'auto';
-            } else {
-                videoArea.style.padding = '';
-                videoArea.style.background = '';
-                videoArea.style.border = '';
-                videoArea.style.minHeight = '';
-                videoArea.innerHTML = `
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2d5016" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polygon points="10 8 16 12 10 16 10 8"></polygon>
-                    </svg>
-                    <p style="color:#666;font-size:1.1rem;margin:1rem 0 0.5rem;">Video Content Area</p>
-                    <p style="color:#999;font-size:0.9rem;">Video coming soon</p>`;
-            }
-
-            const contentDiv = document.getElementById('lessonContent');
-            let summaryHTML = '';
-            if (lesson.summary) {
-                summaryHTML = `<div class="video-summary"><strong>📋 Lesson Summary</strong>${lesson.summary}</div>`;
-            }
-            const paragraphs = lesson.content.split('\n\n');
-            let html = '';
-            paragraphs.forEach(para => {
-                if (para.startsWith('**') && para.endsWith('**')) {
-                    html += `<h3>${para.replace(/\*\*/g, '')}</h3>`;
-                } else {
-                    const formatted = para.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-                    html += `<p>${formatted}</p>`;
-                }
-            });
-            contentDiv.innerHTML = summaryHTML + html;
-
-            const completeBtn = document.getElementById('completeBtn');
-            if (completedLessons[key]) {
-                completeBtn.textContent = '✓ Completed';
-                completeBtn.className = 'complete-btn completed';
-                completeBtn.disabled = true;
-            } else {
-                completeBtn.textContent = 'Mark as Complete';
-                completeBtn.className = 'complete-btn';
-                completeBtn.disabled = false;
-            }
-
-            const isLastLesson = currentLesson === modules[currentModule].lessons.length - 1;
-            const isVeryLastLesson = currentModule === modules.length - 1 && isLastLesson;
-            const nextBtn = document.getElementById('nextBtn');
-            document.getElementById('prevBtn').disabled = (currentModule === 0 && currentLesson === 0);
-            nextBtn.disabled = isVeryLastLesson;
-            nextBtn.textContent = isLastLesson && !isVeryLastLesson ? 'Take Quiz →' : 'Next →';
-            window.scrollTo(0, 0);
-        }
-
-        function showDashboard() {
-            document.getElementById('dashboardView').classList.remove('hidden');
-            document.getElementById('lessonView').classList.remove('active');
-            document.getElementById('quizView').classList.remove('active');
-            renderModules();
-            window.scrollTo(0, 0);
-        }
-
-        function markComplete() {
-            const key = `${currentModule}-${currentLesson}`;
-            completedLessons[key] = true;
-            saveProgress();
-            showLesson();
-        }
-
-        function prevLesson() {
-            if (currentLesson > 0) {
-                currentLesson--;
-                showLesson();
-            } else if (currentModule > 0) {
-                // Go back to the quiz of the previous module
-                startQuiz(currentModule - 1);
-            }
-        }
-
-        function nextLesson() {
-            const mod = modules[currentModule];
-            if (currentLesson < mod.lessons.length - 1) {
-                currentLesson++;
-                showLesson();
-            } else {
-                // Last lesson of this module — go to the quiz
-                startQuiz(currentModule);
-            }
-        }
-
-        // ===== QUIZ =====
-        function startQuiz(moduleIdx) {
-            if (isModuleLocked(moduleIdx)) return;
-            activeQuizModule = moduleIdx;
-            quizQuestions = modules[moduleIdx].quiz.questions;
-            currentQuestionIdx = 0;
-            quizAnswers = new Array(quizQuestions.length).fill(null);
-            quizAnswered = false;
-
-            document.getElementById('dashboardView').classList.add('hidden');
-            document.getElementById('lessonView').classList.remove('active');
-            document.getElementById('quizView').classList.add('active');
-            document.getElementById('quizTitle').textContent = modules[moduleIdx].quiz.title;
-            document.getElementById('quizSubtitle').textContent = modules[moduleIdx].quiz.subtitle;
-            document.getElementById('quizResults').classList.remove('visible');
-            document.getElementById('questionArea').style.display = 'block';
-            document.getElementById('quizNextBtn').classList.remove('visible');
-
-            renderQuestion();
-            window.scrollTo(0, 0);
-        }
-
-        function renderQuestion() {
-            const q = quizQuestions[currentQuestionIdx];
-            const total = quizQuestions.length;
-            document.getElementById('quizProgressBar').style.width = (currentQuestionIdx / total * 100) + '%';
-            document.getElementById('questionCounter').textContent = `Question ${currentQuestionIdx + 1} of ${total}`;
-
-            const letters = ['A', 'B', 'C', 'D'];
-            const optionsHTML = q.options.map((opt, i) => `
-                <button class="option-btn" onclick="selectAnswer(${i})" id="opt-${i}">
-                    <span class="option-letter">${letters[i]}</span>
-                    ${opt}
-                </button>`).join('');
-
-            document.getElementById('questionArea').innerHTML = `
-                <div class="question-block">
-                    <p class="question-text">${currentQuestionIdx + 1}. ${q.q}</p>
-                    <div class="options-list">${optionsHTML}</div>
-                    <div class="feedback-box" id="feedbackBox"></div>
-                </div>`;
-
-            quizAnswered = false;
-            document.getElementById('quizNextBtn').classList.remove('visible');
-        }
-
-        function selectAnswer(selectedIdx) {
-            if (quizAnswered) return;
-            quizAnswered = true;
-            const q = quizQuestions[currentQuestionIdx];
-            quizAnswers[currentQuestionIdx] = selectedIdx;
-
-            document.querySelectorAll('.option-btn').forEach((btn, i) => {
-                btn.disabled = true;
-                if (i === q.answer) btn.classList.add('correct');
-                else if (i === selectedIdx) btn.classList.add('wrong');
-            });
-
-            const feedback = document.getElementById('feedbackBox');
-            if (selectedIdx === q.answer) {
-                feedback.className = 'feedback-box correct';
-                feedback.innerHTML = `✅ <strong>Correct!</strong> ${q.explanation}`;
-            } else {
-                feedback.className = 'feedback-box wrong';
-                feedback.innerHTML = `❌ <strong>Not quite.</strong> ${q.explanation}`;
-            }
-
-            const nextBtn = document.getElementById('quizNextBtn');
-            nextBtn.classList.add('visible');
-            nextBtn.textContent = currentQuestionIdx === quizQuestions.length - 1 ? 'See Results →' : 'Next Question →';
-        }
-
-        function nextQuestion() {
-            if (currentQuestionIdx < quizQuestions.length - 1) {
-                currentQuestionIdx++;
-                renderQuestion();
-            } else {
-                showResults();
-            }
-        }
-
-        function showResults() {
-            const total = quizQuestions.length;
-            const correct = quizAnswers.filter((ans, i) => ans === quizQuestions[i].answer).length;
-            const percent = Math.round((correct / total) * 100);
-            const passed = percent >= 70;
-
-            document.getElementById('quizProgressBar').style.width = '100%';
-            document.getElementById('questionCounter').textContent = 'Quiz Complete!';
-            document.getElementById('questionArea').style.display = 'none';
-            document.getElementById('quizNextBtn').classList.remove('visible');
-
-            const results = document.getElementById('quizResults');
-            results.classList.add('visible');
-
-            const circle = document.getElementById('scoreCircle');
-            circle.className = `score-circle ${passed ? 'pass' : 'fail'}`;
-            document.getElementById('scoreNumber').textContent = percent + '%';
-            document.getElementById('scoreLabel').textContent = `${correct}/${total} correct`;
-
-            document.getElementById('resultsTitle').textContent = passed ? '🎉 Great Work!' : '📚 Keep Studying!';
-            document.getElementById('resultsMsg').textContent = passed
-                ? `You passed the ${modules[activeQuizModule].quiz.title} with ${percent}%. Excellent understanding!`
-                : `You scored ${percent}%. A score of 70% or higher is needed to pass. Review the lessons and try again!`;
-
-            let breakdownHTML = '';
-            quizQuestions.forEach((q, i) => {
-                const wasCorrect = quizAnswers[i] === q.answer;
-                breakdownHTML += `
-                    <div class="breakdown-item">
-                        <span>Q${i+1}: ${q.q.length > 50 ? q.q.substring(0,50)+'...' : q.q}</span>
-                        <span class="${wasCorrect ? 'correct-tag' : 'wrong-tag'}">${wasCorrect ? '✓ Correct' : '✗ Wrong'}</span>
-                    </div>`;
-            });
-            document.getElementById('resultsBreakdown').innerHTML = breakdownHTML;
-
-            const continueBtn = document.getElementById('continueBtn');
-            if (passed) {
-                passedQuizzes[activeQuizModule] = true;
-                saveProgress();
-                const nextModuleIdx = activeQuizModule + 1;
-                if (nextModuleIdx < modules.length) {
-                    continueBtn.textContent = `Start Module ${nextModuleIdx + 1} →`;
-                    continueBtn.onclick = function() {
-                        currentModule = nextModuleIdx;
-                        currentLesson = 0;
-                        showLesson();
-                    };
-                } else {
-                    continueBtn.textContent = '🎉 Course Complete!';
-                    continueBtn.onclick = showDashboard;
-                }
-            } else {
-                continueBtn.textContent = 'Back to Dashboard';
-                continueBtn.onclick = showDashboard;
-            }
-        }
-
-        function retryQuiz() { startQuiz(activeQuizModule); }
-
-        loadProgress();
-        renderModules();
-
-        // Handle deep links from home page e.g. courses.html?module=0&lesson=0
-        const params = new URLSearchParams(window.location.search);
-        if (params.has('module')) {
-            const m = parseInt(params.get('module')) || 0;
-            const l = parseInt(params.get('lesson')) || 0;
-            currentModule = m;
-            currentLesson = l;
-            showLesson();
-        }
+        });
     </script>
+
 </body>
 </html>
