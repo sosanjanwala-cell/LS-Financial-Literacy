@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — S2S Visuals</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --white:#ffffff; --off-white:#f7f5f2; --light:#ece9e4;
+    --gold:#b8923a; --gold-dark:#9a7830;
+    --black:#111111; --dark:#1c1c1c; --gray:#767676; --gray-light:#aaaaaa;
+    --border:#e0dbd4;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--white);color:var(--black);font-family:'Jost',sans-serif;font-weight:400;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;background:rgba(255,255,255,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(10px);}
+  .nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--black);text-decoration:none;letter-spacing:1px;}
+  .nav-logo span{color:var(--gold);}
+  .nav-links{display:flex;gap:36px;list-style:none;}
+  .nav-links a{color:var(--gray);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;transition:color 0.2s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--black);}
+  .nav-ig{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--white);background:var(--black);padding:10px 22px;text-decoration:none;transition:background 0.2s;}
+  .nav-ig:hover{background:var(--gold);}
+
+  .page-header{padding:110px 52px 52px;border-bottom:1px solid var(--border);display:flex;align-items:flex-end;justify-content:space-between;}
+  .page-label{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;}
+  .page-title{font-family:'Playfair Display',serif;font-size:clamp(38px,5vw,64px);font-weight:700;line-height:1.1;}
+  .page-title em{font-style:italic;color:var(--gold);}
+  .page-sub{font-size:14px;color:var(--gray);font-family:'Libre Baskerville',serif;max-width:340px;line-height:1.7;text-align:right;}
+
+  /* TABS */
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);padding:0 52px;position:sticky;top:68px;z-index:100;background:var(--white);}
+  .tab{background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;color:var(--gray);padding:20px 28px;position:relative;transition:color 0.2s;}
+  .tab::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--black);transform:scaleX(0);transition:transform 0.2s;}
+  .tab.active{color:var(--black);}
+  .tab.active::after{transform:scaleX(1);}
+  .tab:hover{color:var(--black);}
+
+  /* GRID */
+  .grid-wrap{padding:52px;display:none;}
+  .grid-wrap.active{display:block;}
+
+  /* Section heading inside grid */
+  .grid-intro{margin-bottom:36px;}
+  .grid-intro p{font-family:'Libre Baskerville',serif;font-size:14px;color:var(--gray);line-height:1.8;max-width:600px;}
+
+  .masonry{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
+  .masonry.two-col{grid-template-columns:repeat(2,1fr);}
+  .grid-item{background:var(--light);position:relative;overflow:hidden;cursor:pointer;}
+  .grid-ph{width:100%;padding-top:130%;position:relative;}
+  .grid-fill{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:11px;color:rgba(0,0,0,0.18);letter-spacing:2px;font-style:italic;transition:transform 0.5s ease;}
+  .grid-item:hover .grid-fill{transform:scale(1.04);}
+  .grid-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.55) 0%,transparent 55%);opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;padding:18px 20px;}
+  .grid-item:hover .grid-overlay{opacity:1;}
+  .grid-overlay span{font-family:'Playfair Display',serif;font-size:16px;color:#fff;font-style:italic;}
+
+  /* Video */
+  .play-btn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:56px;height:56px;border:2px solid rgba(255,255,255,0.6);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;z-index:2;transition:all 0.3s;color:var(--white);background:rgba(0,0,0,0.25);}
+  .grid-item:hover .play-btn{border-color:var(--white);background:rgba(0,0,0,0.5);}
+
+  /* VIDEO EMBEDS */
+  .video-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 0 0 8px; }
+  .video-item { display: flex; flex-direction: column; gap: 12px; }
+  .video-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  .video-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .video-desc { font-size: 13px; color: var(--gray); font-family: 'Libre Baskerville', serif; line-height: 1.7; }
+  .video-embed { position: relative; width: 100%; padding-top: 56.25%; background: #111; }
+  .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-coming { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: #111; color: rgba(255,255,255,0.5); font-family: 'Playfair Display', serif; font-style: italic; font-size: 16px; gap: 12px; }
+  .video-coming::before { content: '▶'; font-size: 32px; color: var(--gold); font-style: normal; }
+
+  /* INLINE PHOTO TEXT BREAK */
+  .photo-break{padding:0 52px;margin:52px 0 0;}
+  .photo-break-inner{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:36px 0;display:flex;align-items:center;gap:16px;}
+  .photo-break-inner p{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;color:var(--gray);}
+  .photo-break-inner::before{content:'';display:block;width:32px;height:1px;background:var(--gold);flex-shrink:0;}
+
+  footer{border-top:1px solid var(--border);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;background:var(--white);}
+  .footer-logo{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--black);}
+  .footer-logo span{color:var(--gold);}
+  .footer-copy{font-size:11px;color:var(--gray);letter-spacing:1px;}
+  .footer-links{display:flex;gap:28px;}
+  .footer-links a{font-size:11px;color:var(--gray);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--black);}
+
+  @media(max-width:900px){
+    nav{padding:0 20px;} .nav-links{display:none;}
+    .page-header{padding:100px 20px 36px;flex-direction:column;gap:16px;}
+    .page-sub{text-align:left;}
+    .tabs{padding:0 20px;overflow-x:auto;}
+    .grid-wrap{padding:24px 20px;}
+    .masonry{grid-template-columns:1fr 1fr;}
+    .grid-item.wide{grid-column:span 2;}
+    .grid-item.tall{grid-row:span 1;}
+    .photo-break{padding:0 20px;}
+    footer{flex-direction:column;gap:16px;text-align:center;}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="nav-logo">S2S <span>Visuals</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="nonprofit.html">Nonprofit</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="https://www.instagram.com/s2s.visuals/" target="_blank" class="nav-ig">↗ @s2s.visuals</a>
+</nav>
+
+<div class="page-header">
+  <div>
+    <p class="page-label">Selected Work</p>
+    <h1 class="page-title">The <em>Portfolio</em></h1>
+  </div>
+  <p class="page-sub">Sports. World & Nature. Video. Every image tells a different story.</p>
+</div>
+
+<div class="tabs">
+  <button class="tab active" data-tab="sports">Sports</button>
+  <button class="tab" data-tab="nature">World & Nature</button>
+  <button class="tab" data-tab="video">Video</button>
+</div>
+
+<!-- SPORTS -->
+<div class="grid-wrap active" id="tab-sports">
+  <div class="grid-intro">
+    <p>High-energy sports coverage capturing the intensity and emotion of every game — from the opening whistle to the final buzzer.</p>
+  </div>
+  <div class="masonry">
+    <div class="grid-item"><div class="grid-ph"><img src="s_basketball_dunk.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"></div><div class="grid-overlay"><span>The Dunk</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_baseball.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>On the Mound</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_football_td.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"></div><div class="grid-overlay"><span>Breaking Through</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_soccer_dribble.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>On the Ball</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_football_sunset.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"></div><div class="grid-overlay"><span>Before the Game</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_soccer_goal2.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>Goal</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_fieldhockey.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>Eyes Down</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_football_bw.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>After the Whistle</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_basketball_girls.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"></div><div class="grid-overlay"><span>The Shot</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_fan.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>Game Day</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_football_raiders.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"></div><div class="grid-overlay"><span>Raiders</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_soccer_goal1.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>Celebration</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="s_volleyball.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>The Serve</span></div></div>
+  </div>
+  <div class="photo-break">
+    <div class="photo-break-inner">
+      <p>$40 per athlete, per game. 30–40 photos delivered within 48 hours.</p>
+    </div>
+  </div>
+</div>
+
+<!-- WORLD & NATURE -->
+<div class="grid-wrap" id="tab-nature">
+  <div class="grid-intro">
+    <p>Architecture, wildlife, and the world beyond the field — shot everywhere from Barcelona to the backyard.</p>
+  </div>
+  <div class="masonry">
+    <div class="grid-item"><div class="grid-ph"><img src="w_sagrada.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>Sagrada Família</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="w_palm.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>Looking Up</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="w_rooftop.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"></div><div class="grid-overlay"><span>Granada</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="w_barcelona.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>Barcelona</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="w_baboon.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>On the Move</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="w_bird_bw.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"></div><div class="grid-overlay"><span>The Stare</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="w_cathedral.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;"></div><div class="grid-overlay"><span>Balboa Park</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="w_tiger.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>At Rest</span></div></div>
+    <div class="grid-item"><div class="grid-ph"><img src="w_robin.jpg" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;"></div><div class="grid-overlay"><span>Early Spring</span></div></div>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<div class="grid-wrap" id="tab-video">
+  <div class="grid-intro">
+    <p>Sports highlights and nonprofit video — professional work that tells the full story. I also do free photography for nonprofits alongside video.</p>
+  </div>
+  <div class="video-grid">
+    <div class="video-item">
+      <p class="video-label">Sports</p>
+      <div class="video-title">Football Game Reel</div>
+      <p class="video-desc">Full-game coverage capturing the intensity, the plays, and the moments that matter.</p>
+      <div class="video-embed">
+        
+<iframe
+  src="https://www.youtube.com/embed/1pnJHjwtR7A?autoplay=1&mute=1&playsinline=1"
+  style="position:absolute;inset:0;width:100%;height:100%;"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+
+      </div>
+    </div>
+    <div class="video-item">
+      <p class="video-label">Nonprofit</p>
+      <div class="video-title">Nonprofit Campaign Video</div>
+      <p class="video-desc">Professional video and photo work made for nonprofits doing important work in the community — completely free.</p>
+      <div class="video-embed">
+        
+<iframe
+  src="https://www.youtube.com/embed/1pnJHjwtR7A?autoplay=1&mute=1&playsinline=1"
+  style="position:absolute;inset:0;width:100%;height:100%;"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">S2S <span>Visuals</span></div>
+  <div class="footer-copy">© 2025 S2S Visuals</div>
+  <div class="footer-links">
+    <a href="services.html">Services</a>
+    <a href="nonprofit.html">Nonprofit</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.grid-wrap').forEach(s => s.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
